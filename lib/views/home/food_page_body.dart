@@ -103,7 +103,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                             image: const DecorationImage(
                                 fit: BoxFit.cover,
                                 image: AssetImage(
-                                    'assets/images/food_page_body5.jpg'))),
+                                    'assets/images/food_page_body7.jpg'))),
                       ),
                       Expanded(
                           child: Container(
