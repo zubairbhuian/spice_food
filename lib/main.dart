@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'views/home/main_food_page.dart';
+import 'package:food_app/views/food/recomendded_food_detail.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            home: const MainFooodPage(),
+            home: const RecomeddedFoodDetsil(),
           )),
     );
   }

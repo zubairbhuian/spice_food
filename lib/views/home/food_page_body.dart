@@ -2,6 +2,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/utils/colors.dart';
+import 'package:food_app/widgets/app_colum.dart';
 import 'package:food_app/widgets/big_text.dart';
 import 'package:food_app/widgets/icon_and_text_widget.dart';
 import 'package:food_app/widgets/small_text.dart';
@@ -216,53 +217,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   ]),
               child: Container(
                 padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const BigText(text: 'Chinese Side'),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Wrap(
-                            children: List.generate(
-                          5,
-                          (index) => Icon(
-                            Icons.star,
-                            color: AppColors.mainColor,
-                            size: 15,
-                          ),
-                        )),
-                        const SizedBox(width: 10),
-                        const SmallText(text: '4.5'),
-                        const SizedBox(width: 10),
-                        const SmallText(text: '1245'),
-                        const SizedBox(width: 10),
-                        const SmallText(text: 'comments'),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconAndTextWidget(
-                          icon: Icons.circle_sharp,
-                          iconColor: AppColors.iconColor1,
-                          text: 'Normal',
-                        ),
-                        IconAndTextWidget(
-                          icon: Icons.location_on,
-                          iconColor: AppColors.mainColor,
-                          text: '1.7Km',
-                        ),
-                        IconAndTextWidget(
-                          icon: Icons.access_time_rounded,
-                          iconColor: AppColors.iconColor2,
-                          text: '32min',
-                        ),
-                      ],
-                    )
-                  ],
-                ),
+                child: const AppColum(text: 'Chiness Side'),
               ),
             ),
           ),
