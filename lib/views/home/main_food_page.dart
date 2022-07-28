@@ -6,7 +6,6 @@ import 'package:food_app/widgets/small_text.dart';
 
 import 'food_page_body.dart';
 
-
 class MainFooodPage extends StatefulWidget {
   const MainFooodPage({Key? key}) : super(key: key);
 
@@ -22,7 +21,7 @@ class _MainFooodPageState extends State<MainFooodPage> {
         children: [
           Container(
             child: Container(
-              margin: const EdgeInsets.only(top: 55, bottom: 15),
+              margin: const EdgeInsets.only(top: 36, bottom: 15),
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

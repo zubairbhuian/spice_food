@@ -27,7 +27,7 @@ class PopularFoodDetail extends StatelessWidget {
                             AssetImage('assets/images/food_page_body7.jpg'))),
               )),
           Positioned(
-              top: 45.h,
+              top: 36.h,
               left: 20.w,
               right: 20.w,
               child: Row(

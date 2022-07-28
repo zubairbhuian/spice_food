@@ -24,6 +24,8 @@ samples, guidance on mobile development, and a full API reference.
 
 ## App screen 
 <img width="420" src="screenShorts/Screenshot_1.png"/>
+<img width="420" src="screenShorts/Screenshot_2.png"/>
+<img width="420" src="screenShorts/Screenshot_3.png"/>
 
 
 
