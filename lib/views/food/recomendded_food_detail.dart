@@ -46,7 +46,7 @@ class RecomeddedFoodDetsil extends StatelessWidget {
             background: Image.asset(
                 width: double.maxFinite,
                 fit: BoxFit.cover,
-                'assets/images/food_page_body8.jpg'),
+                'assets/images/food_page_body1_naw.jpg'),
           ),
         ),
         SliverToBoxAdapter(

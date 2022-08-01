@@ -1,11 +1,14 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_app/controllers/populer_food_controller.dart';
+import 'package:food_app/utils/app_constants.dart';
 import 'package:food_app/utils/colors.dart';
 import 'package:food_app/widgets/app_colum.dart';
 import 'package:food_app/widgets/big_text.dart';
 import 'package:food_app/widgets/icon_and_text_widget.dart';
 import 'package:food_app/widgets/small_text.dart';
+import 'package:get/get.dart';
 
 class FoodPageBody extends StatefulWidget {
   const FoodPageBody({Key? key}) : super(key: key);
@@ -16,6 +19,7 @@ class FoodPageBody extends StatefulWidget {
 
 class _FoodPageBodyState extends State<FoodPageBody> {
   final PageController pageController = PageController(viewportFraction: 0.85);
+  final PopulerFoodController _product = Get.put(PopulerFoodController());
   var _currPageValue = 0.0;
   final double _scaleFactor = 0.8;
   final double _height = 220.h;
@@ -41,27 +45,31 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     return Column(
       children: [
         // *Slyder Section
-        SizedBox(
-          height: 320.h,
-          child: PageView.builder(
-              controller: pageController,
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                return _buildPageItems(index);
-              }),
-        ),
+        Obx(() {
+          return SizedBox(
+            height: 320.h,
+            child: PageView.builder(
+                controller: pageController,
+                itemCount: _product.productList.length,
+                itemBuilder: (context, index) {
+                  return _buildPageItems(index);
+                }),
+          );
+        }),
         // *dots section
-        DotsIndicator(
-          dotsCount: 5,
-          position: _currPageValue,
-          decorator: DotsDecorator(
-            activeColor: AppColors.mainColor,
-            size: const Size.square(9.0),
-            activeSize: const Size(18.0, 9.0),
-            activeShape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0)),
-          ),
-        ),
+        Obx(() {
+          return DotsIndicator(
+            dotsCount: _product.productList.length,
+            position: _currPageValue,
+            decorator: DotsDecorator(
+              activeColor: AppColors.mainColor,
+              size: const Size.square(9.0),
+              activeSize: const Size(18.0, 9.0),
+              activeShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0)),
+            ),
+          );
+        }),
         SizedBox(height: 30.h),
         // *Populer Text
         Container(
@@ -189,38 +197,43 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       transform: matrix,
       child: Stack(
         children: [
-          Container(
-            height: _height,
-            margin: const EdgeInsets.only(left: 10, right: 10),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: index.isEven ? Colors.blue : Colors.red,
-                image: const DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/images/food_page_body5.jpg'))),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: 120.h,
-              margin: EdgeInsets.only(left: 30.w, right: 30.w, bottom: 30.h),
+          Obx(() {
+            return Container(
+              height: _height,
+              margin: const EdgeInsets.only(left: 10, right: 10),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  color: Colors.white,
-                  boxShadow: const [
-                    BoxShadow(
-                        color: Color(0xffe8e8e8),
-                        blurRadius: 5.0,
-                        offset: Offset(0, 5)),
-                    BoxShadow(color: Colors.white, offset: Offset(-5, 0)),
-                    BoxShadow(color: Colors.white, offset: Offset(5, 0)),
-                  ]),
+                  color: index.isEven ? Colors.blue : Colors.red,
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(AppConstants.baseURL +
+                          _product.productList[index].img))),
+            );
+          }),
+          Obx(() {
+            return Align(
+              alignment: Alignment.bottomCenter,
               child: Container(
-                padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
-                child: const AppColum(text: 'Chiness Side'),
+                height: 120.h,
+                margin: EdgeInsets.only(left: 30.w, right: 30.w, bottom: 30.h),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.white,
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Color(0xffe8e8e8),
+                          blurRadius: 5.0,
+                          offset: Offset(0, 5)),
+                      BoxShadow(color: Colors.white, offset: Offset(-5, 0)),
+                      BoxShadow(color: Colors.white, offset: Offset(5, 0)),
+                    ]),
+                child: Container(
+                  padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
+                  child: AppColum(text: _product.productList[index].name),
+                ),
               ),
-            ),
-          ),
+            );
+          }),
         ],
       ),
     );
