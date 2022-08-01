@@ -211,29 +211,30 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             );
           }),
           Obx(() {
-            return Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                height: 120.h,
-                margin: EdgeInsets.only(left: 30.w, right: 30.w, bottom: 30.h),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Colors.white,
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Color(0xffe8e8e8),
-                          blurRadius: 5.0,
-                          offset: Offset(0, 5)),
-                      BoxShadow(color: Colors.white, offset: Offset(-5, 0)),
-                      BoxShadow(color: Colors.white, offset: Offset(5, 0)),
-                    ]),
+              return Align(
+                alignment: Alignment.bottomCenter,
                 child: Container(
-                  padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
-                  child: AppColum(text: _product.productList[index].name),
+                  height: 120.h,
+                  margin: EdgeInsets.only(left: 30.w, right: 30.w, bottom: 30.h),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.white,
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Color(0xffe8e8e8),
+                            blurRadius: 5.0,
+                            offset: Offset(0, 5)),
+                        BoxShadow(color: Colors.white, offset: Offset(-5, 0)),
+                        BoxShadow(color: Colors.white, offset: Offset(5, 0)),
+                      ]),
+                  child: Container(
+                    padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
+                    child:  AppColum(text: _product.productList[index]!.name),
+                  ),
                 ),
-              ),
-            );
-          }),
+              );
+            }
+          ),
         ],
       ),
     );
