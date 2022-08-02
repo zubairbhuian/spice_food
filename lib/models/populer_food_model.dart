@@ -10,28 +10,28 @@ String populerFoodModelToJson(List<PopulerFoodModel> data) => json.encode(List<d
 
 class PopulerFoodModel {
     PopulerFoodModel({
-      required  this.id,
-      required  this.name,
-      required  this.description,
-      required  this.price,
-      required  this.stars,
-      required  this.img,
-      required  this.location,
-      required  this.createdAt,
-      required  this.updatedAt,
-      required  this.typeId,
+        this.id,
+        this.name,
+        this.description,
+        this.price,
+        this.stars,
+        this.img,
+        this.location,
+       required this.createdAt,
+       required this.updatedAt,
+        this.typeId,
     });
 
-    int id;
-    String name;
-    String description;
-    int price;
-    int stars;
-    String img;
-    String location;
+    int? id;
+    String? name;
+    String? description;
+    int? price;
+    int? stars;
+    String? img;
+    String ?location;
     DateTime createdAt;
     DateTime updatedAt;
-    int typeId;
+    int? typeId;
 
     factory PopulerFoodModel.fromJson(Map<String, dynamic> json) => PopulerFoodModel(
         id: json["id"],
