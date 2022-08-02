@@ -5,6 +5,7 @@ import 'package:food_app/controllers/populer_food_controller.dart';
 import 'package:food_app/controllers/recomended_food_controller.dart';
 import 'package:food_app/utils/app_constants.dart';
 import 'package:food_app/utils/colors.dart';
+import 'package:food_app/views/food/popular_food_detail.dart';
 import 'package:food_app/widgets/app_colum.dart';
 import 'package:food_app/widgets/big_text.dart';
 import 'package:food_app/widgets/icon_and_text_widget.dart';
@@ -21,7 +22,8 @@ class FoodPageBody extends StatefulWidget {
 class _FoodPageBodyState extends State<FoodPageBody> {
   final PageController pageController = PageController(viewportFraction: 0.85);
   final PopulerFoodController _product = Get.put(PopulerFoodController());
-  final RecomendedFoodController _recoproduct = Get.put(RecomendedFoodController());
+  final RecomendedFoodController _recoproduct =
+      Get.put(RecomendedFoodController());
   var _currPageValue = 0.0;
   final double _scaleFactor = 0.8;
   final double _height = 220.h;
@@ -86,7 +88,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const BigText(text: "Popular"),
+              const BigText(text: "Recomended"),
               SizedBox(width: 10.w),
               Container(
                 margin: EdgeInsets.only(bottom: 7.w),
@@ -104,10 +106,15 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           ),
         ),
         Obx(() {
+          if (_product.isLoding.value) {
+            return CircularProgressIndicator(
+              color: AppColors.mainColor,
+            );
+          }
           return ListView.builder(
               physics: const ScrollPhysics(),
               shrinkWrap: true,
-              itemCount:_recoproduct.productList.length,
+              itemCount: _recoproduct.productList.length,
               itemBuilder: (context, index) => Container(
                     margin: EdgeInsets.only(
                         left: 30.w, right: 30.w, top: 5.h, bottom: 5.h),
@@ -139,7 +146,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                BigText(text: _recoproduct.productList[index].name),
+                                BigText(
+                                    text: _recoproduct.productList[index].name),
                                 SizedBox(height: 7.h),
                                 const SmallText(
                                     text: 'With Chiness chracteistics'),
@@ -203,49 +211,53 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       matrix = Matrix4.diagonal3Values(1, currScale, 1)
         ..setTranslationRaw(0, _height * (1 - _scaleFactor) / 2, 0);
     }
-    return Transform(
-      transform: matrix,
-      child: Stack(
-        children: [
-          Obx(() {
-            return Container(
-              height: _height,
-              margin: const EdgeInsets.only(left: 10, right: 10),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: index.isEven ? Colors.blue : Colors.red,
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(AppConstants.baseURL +
-                          _product.productList[index].img))),
-            );
-          }),
-          Obx(() {
-            return Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                height: 120.h,
-                margin: EdgeInsets.only(left: 30.w, right: 30.w, bottom: 30.h),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Colors.white,
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Color(0xffe8e8e8),
-                          blurRadius: 5.0,
-                          offset: Offset(0, 5)),
-                      BoxShadow(color: Colors.white, offset: Offset(-5, 0)),
-                      BoxShadow(color: Colors.white, offset: Offset(5, 0)),
-                    ]),
-                child: Container(
-                  padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
-                  child: AppColum(text: _product.productList[index].name),
+    return GestureDetector(
+      child: Transform(
+        transform: matrix,
+        child: Obx( () {
+            return Stack(
+              children: [
+                Container(
+                  height: _height,
+                  margin: const EdgeInsets.only(left: 10, right: 10),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: index.isEven ? Colors.blue : Colors.red,
+                      image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(AppConstants.baseURL +
+                              _product.productList[index].img))),
                 ),
-              ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    height: 120.h,
+                    margin: EdgeInsets.only(left: 30.w, right: 30.w, bottom: 30.h),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.white,
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Color(0xffe8e8e8),
+                              blurRadius: 5.0,
+                              offset: Offset(0, 5)),
+                          BoxShadow(color: Colors.white, offset: Offset(-5, 0)),
+                          BoxShadow(color: Colors.white, offset: Offset(5, 0)),
+                        ]),
+                    child: Container(
+                      padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
+                      child: AppColum(text: _product.productList[index].name),
+                    ),
+                  ),
+                ),
+              ],
             );
-          }),
-        ],
+          }
+        ),
       ),
+      onTap: () {
+        Get.to(() =>PopularFoodDetail(index: index,));
+      },
     );
   }
 }
