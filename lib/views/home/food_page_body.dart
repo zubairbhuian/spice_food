@@ -6,6 +6,7 @@ import 'package:food_app/controllers/recomended_food_controller.dart';
 import 'package:food_app/utils/app_constants.dart';
 import 'package:food_app/utils/colors.dart';
 import 'package:food_app/views/food/popular_food_detail.dart';
+import 'package:food_app/views/food/recomendded_food_detail.dart';
 import 'package:food_app/widgets/app_colum.dart';
 import 'package:food_app/widgets/big_text.dart';
 import 'package:food_app/widgets/icon_and_text_widget.dart';
@@ -115,70 +116,76 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               physics: const ScrollPhysics(),
               shrinkWrap: true,
               itemCount: _recoproduct.productList.length,
-              itemBuilder: (context, index) => Container(
-                    margin: EdgeInsets.only(
-                        left: 30.w, right: 30.w, top: 5.h, bottom: 5.h),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 120.w,
-                          height: 120.w,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15.r),
+              itemBuilder: (context, index) => GestureDetector(
+                    child: Container(
+                      margin: EdgeInsets.only(
+                          left: 30.w, right: 30.w, top: 5.h, bottom: 5.h),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 120.w,
+                            height: 120.w,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15.r),
+                                color: Colors.white,
+                                image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: NetworkImage(AppConstants.baseURL +
+                                        _recoproduct.productList[index].img))),
+                          ),
+                          Expanded(
+                              child: Container(
+                            height: 100.w,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(20.r),
+                                  bottomRight: Radius.circular(20.r)),
                               color: Colors.white,
-                              image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(AppConstants.baseURL +
-                                      _recoproduct.productList[index].img))),
-                        ),
-                        Expanded(
-                            child: Container(
-                          height: 100.w,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(20.r),
-                                bottomRight: Radius.circular(20.r)),
-                            color: Colors.white,
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 10.w, right: 10.w),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                BigText(
-                                    text: _recoproduct.productList[index].name),
-                                SizedBox(height: 7.h),
-                                const SmallText(
-                                    text: 'With Chiness chracteistics'),
-                                SizedBox(height: 7.h),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    IconAndTextWidget(
-                                      icon: Icons.circle_sharp,
-                                      iconColor: AppColors.iconColor1,
-                                      text: 'Normal',
-                                    ),
-                                    IconAndTextWidget(
-                                      icon: Icons.location_on,
-                                      iconColor: AppColors.mainColor,
-                                      text: '1.7Km',
-                                    ),
-                                    IconAndTextWidget(
-                                      icon: Icons.access_time_rounded,
-                                      iconColor: AppColors.iconColor2,
-                                      text: '32min',
-                                    ),
-                                  ],
-                                )
-                              ],
                             ),
-                          ),
-                        ))
-                      ],
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 10.w, right: 10.w),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  BigText(
+                                      text:
+                                          _recoproduct.productList[index].name),
+                                  SizedBox(height: 7.h),
+                                  const SmallText(
+                                      text: 'With Chiness chracteistics'),
+                                  SizedBox(height: 7.h),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      IconAndTextWidget(
+                                        icon: Icons.circle_sharp,
+                                        iconColor: AppColors.iconColor1,
+                                        text: 'Normal',
+                                      ),
+                                      IconAndTextWidget(
+                                        icon: Icons.location_on,
+                                        iconColor: AppColors.mainColor,
+                                        text: '1.7Km',
+                                      ),
+                                      IconAndTextWidget(
+                                        icon: Icons.access_time_rounded,
+                                        iconColor: AppColors.iconColor2,
+                                        text: '32min',
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                          ))
+                        ],
+                      ),
                     ),
+                    onTap: () {
+                      Get.to(RecomeddedFoodDetsil(index: index,));
+                    },
                   ));
         })
       ],
@@ -214,49 +221,52 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     return GestureDetector(
       child: Transform(
         transform: matrix,
-        child: Obx( () {
-            return Stack(
-              children: [
-                Container(
-                  height: _height,
-                  margin: const EdgeInsets.only(left: 10, right: 10),
+        child: Obx(() {
+          return Stack(
+            children: [
+              Container(
+                height: _height,
+                margin: const EdgeInsets.only(left: 10, right: 10),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: index.isEven ? Colors.blue : Colors.red,
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(AppConstants.baseURL +
+                            _product.productList[index].img))),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  height: 120.h,
+                  margin:
+                      EdgeInsets.only(left: 30.w, right: 30.w, bottom: 30.h),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
-                      color: index.isEven ? Colors.blue : Colors.red,
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(AppConstants.baseURL +
-                              _product.productList[index].img))),
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
+                      color: Colors.white,
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Color(0xffe8e8e8),
+                            blurRadius: 5.0,
+                            offset: Offset(0, 5)),
+                        BoxShadow(color: Colors.white, offset: Offset(-5, 0)),
+                        BoxShadow(color: Colors.white, offset: Offset(5, 0)),
+                      ]),
                   child: Container(
-                    height: 120.h,
-                    margin: EdgeInsets.only(left: 30.w, right: 30.w, bottom: 30.h),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: Colors.white,
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Color(0xffe8e8e8),
-                              blurRadius: 5.0,
-                              offset: Offset(0, 5)),
-                          BoxShadow(color: Colors.white, offset: Offset(-5, 0)),
-                          BoxShadow(color: Colors.white, offset: Offset(5, 0)),
-                        ]),
-                    child: Container(
-                      padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
-                      child: AppColum(text: _product.productList[index].name),
-                    ),
+                    padding:
+                        const EdgeInsets.only(top: 15, left: 15, right: 15),
+                    child: AppColum(text: _product.productList[index].name),
                   ),
                 ),
-              ],
-            );
-          }
-        ),
+              ),
+            ],
+          );
+        }),
       ),
       onTap: () {
-        Get.to(() =>PopularFoodDetail(index: index,));
+        Get.to(() => PopularFoodDetail(
+              index: index,
+            ));
       },
     );
   }
