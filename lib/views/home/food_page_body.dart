@@ -223,31 +223,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       matrix = Matrix4.diagonal3Values(1, currScale, 1)
         ..setTranslationRaw(0, _height * (1 - _scaleFactor) / 2, 0);
     }
-<<<<<<< HEAD
-    return Transform(
-      transform: matrix,
-      child: Stack(
-        children: [
-          Obx(() {
-            return Container(
-              height: _height,
-              margin: const EdgeInsets.only(left: 10, right: 10),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: index.isEven ? Colors.blue : Colors.red,
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(AppConstants.baseURL +
-                          _product.productList[index].img))),
-            );
-          }),
-          Obx(() {
-              return Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  height: 120.h,
-                  margin: EdgeInsets.only(left: 30.w, right: 30.w, bottom: 30.h),
-=======
+
+
     return GestureDetector(
       child: Transform(
         transform: matrix,
@@ -271,7 +248,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   height: 120.h,
                   margin:
                       EdgeInsets.only(left: 30.w, right: 30.w, bottom: 30.h),
->>>>>>> food_api
+
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
                       color: Colors.white,
@@ -284,16 +261,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                         BoxShadow(color: Colors.white, offset: Offset(5, 0)),
                       ]),
                   child: Container(
-<<<<<<< HEAD
-                    padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
-                    child:  AppColum(text: _product.productList[index]!.name),
-                  ),
-                ),
-              );
-            }
-          ),
-        ],
-=======
+
                     padding:
                         const EdgeInsets.only(top: 15, left: 15, right: 15),
                     child: AppColum(text: _product.productList[index].name),
@@ -303,7 +271,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             ],
           );
         }),
->>>>>>> food_api
+
       ),
       onTap: () {
         Get.to(() => PopularFoodDetail(

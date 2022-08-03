@@ -12,12 +12,9 @@ import 'package:get/get.dart';
 import '../../controllers/populer_food_controller.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-<<<<<<< HEAD
-   const PopularFoodDetail({Key? key}) : super(key: key);
-=======
+
   final int index;
   const PopularFoodDetail({Key? key, required this.index}) : super(key: key);
->>>>>>> food_api
 
   @override
   Widget build(BuildContext context) {
