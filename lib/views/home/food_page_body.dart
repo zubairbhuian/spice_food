@@ -68,18 +68,21 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         }),
         // *dots section
         // Obx(() {
-        DotsIndicator(
-          dotsCount:
-              _product.productList.length > 1 ? _product.productList.length : 1,
-          position: _currPageValue,
-          decorator: DotsDecorator(
-            activeColor: AppColors.mainColor,
-            size: const Size.square(9.0),
-            activeSize: const Size(18.0, 9.0),
-            activeShape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0)),
-          ),
-        ),
+        Obx(() {
+          return DotsIndicator(
+            dotsCount: _product.productList.length > 1
+                ? _product.productList.length
+                : 1,
+            position: _currPageValue,
+            decorator: DotsDecorator(
+              activeColor: AppColors.mainColor,
+              size: const Size.square(9.0),
+              activeSize: const Size(18.0, 9.0),
+              activeShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0)),
+            ),
+          );
+        }),
 
         // }),
         SizedBox(height: 30.h),
@@ -184,7 +187,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                       ),
                     ),
                     onTap: () {
-                      Get.to(RecomeddedFoodDetsil(index: index,));
+                      Get.to(RecomeddedFoodDetsil(
+                        index: index,
+                      ));
                     },
                   ));
         })

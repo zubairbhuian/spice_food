@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/utils/colors.dart';
+import 'package:food_app/views/food/add_to_card_screen.dart';
+import 'package:food_app/views/home/main_food_page.dart';
 import 'package:food_app/widgets/app_icon.dart';
 import 'package:food_app/widgets/big_text.dart';
 import 'package:food_app/widgets/expandable_text_widget.dart';
@@ -22,7 +24,7 @@ class RecomeddedFoodDetsil extends StatelessWidget {
       body: Obx(() {
         return CustomScrollView(slivers: [
           SliverAppBar(
-            leading: const Text(''),
+            automaticallyImplyLeading: false,
             toolbarHeight: 70,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,7 +32,7 @@ class RecomeddedFoodDetsil extends StatelessWidget {
                 GestureDetector(
                   child: const AppIcon(icon: Icons.clear),
                   onTap: () {
-                    Get.back();
+                    Get.to(const MainFooodPage());
                   },
                 ),
                 const AppIcon(icon: Icons.shopping_cart_outlined),
@@ -126,16 +128,21 @@ class RecomeddedFoodDetsil extends StatelessWidget {
                     color: AppColors.mainColor,
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.all(20.w),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.r),
-                      color: AppColors.mainColor),
-                  child: BigText(
-                    text:
-                        "\$ ${recoproduct.productList[index].price} | Add to cart",
-                    color: Colors.white,
+                GestureDetector(
+                  child: Container(
+                    padding: EdgeInsets.all(20.w),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20.r),
+                        color: AppColors.mainColor),
+                    child: BigText(
+                      text:
+                          "\$ ${recoproduct.productList[index].price} | Add to cart",
+                      color: Colors.white,
+                    ),
                   ),
+                  onTap: () {
+                    Get.to(const AddToCardScreen());
+                  },
                 ),
               ],
             ),
