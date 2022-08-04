@@ -8,8 +8,6 @@
 
 A new Flutter project.
 
-## Getting Started
-
 This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
@@ -23,9 +21,9 @@ samples, guidance on mobile development, and a full API reference.
 
 
 ## App screen 
-<img width="420" src="screenShorts/Screenshot_1.png"/>
-<img width="420" src="screenShorts/Screenshot_2.png"/>
-<img width="420" src="screenShorts/Screenshot_3.png"/>
+<img width="360" src="screenShorts/Screenshot_1.png"/>
+<img width="360" src="screenShorts/Screenshot_2.png"/>
+<img width="360" src="screenShorts/Screenshot_3.png"/>
 
 
 
