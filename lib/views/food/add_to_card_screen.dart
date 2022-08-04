@@ -72,7 +72,7 @@ class AddToCardScreen extends StatelessWidget {
       body: ListView.builder(
           physics: const ScrollPhysics(),
           shrinkWrap: true,
-          itemCount: 10,
+          itemCount: 1,
           itemBuilder: (context, index) => Container(
                 margin: EdgeInsets.only(
                     left: 30.w, right: 30.w, top: 5.h, bottom: 5.h),

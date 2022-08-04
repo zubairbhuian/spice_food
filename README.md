@@ -21,9 +21,10 @@ samples, guidance on mobile development, and a full API reference.
 
 
 ## App screen 
-<img width="360" src="screenShorts/Screenshot_1.png"/>
-<img width="360" src="screenShorts/Screenshot_2.png"/>
-<img width="360" src="screenShorts/Screenshot_3.png"/>
+<img width="360" src="screenShorts/home1.0.png"/>
+<img width="360" src="screenShorts/populer1.0.png"/>
+<img width="360" src="screenShorts/rec.1.0.png"/>
+<img width="360" src="screenShorts/addtocard1.0.png"/>
 
 
 
