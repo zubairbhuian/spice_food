@@ -3,10 +3,9 @@ import 'package:food_app/services/remote_services.dart';
 import 'package:get/get.dart';
 
 class PopulerFoodController extends GetxController {
+  RxInt quantity = 0.obs;
   var isLoding = true.obs;
   var productList = [].obs;
-
-  // get isEmpty => null;
 
   @override
   void onInit() {
@@ -25,5 +24,13 @@ class PopulerFoodController extends GetxController {
       isLoding(false);
     }
     return null;
+  }
+
+  void setQuantity(bool isIncriment) {
+    if (isIncriment) {
+      quantity = quantity + 1;
+    } else {
+      quantity = quantity - 1;
+    }
   }
 }

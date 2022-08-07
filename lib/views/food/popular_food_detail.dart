@@ -12,7 +12,6 @@ import 'package:get/get.dart';
 import '../../controllers/populer_food_controller.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-
   final int index;
   const PopularFoodDetail({Key? key, required this.index}) : super(key: key);
 
@@ -92,26 +91,39 @@ class PopularFoodDetail extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                padding: EdgeInsets.all(20.w),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20.r)),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.remove,
-                      color: AppColors.singColor,
-                    ),
-                    SizedBox(width: 5.w),
-                    const BigText(text: "0"),
-                    SizedBox(width: 5.w),
-                    Icon(
-                      Icons.add,
-                      color: AppColors.singColor,
-                    ),
-                  ],
+                  padding: EdgeInsets.all(20.w),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20.r)),
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        child: Icon(
+                          Icons.remove,
+                          color: AppColors.singColor,
+                        ),
+                        onTap: () {
+                          product.setQuantity(false);
+                        },
+                      ),
+                      SizedBox(width: 5.w),
+                      Obx(() {
+                        return BigText(text: product.quantity.toString());
+                      }),
+                      // BigText(text: product.quantity.toString()),
+                      SizedBox(width: 5.w),
+                      GestureDetector(
+                        child: Icon(
+                          Icons.add,
+                          color: AppColors.singColor,
+                        ),
+                        onTap: () {
+                          product.setQuantity(true);
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-              ),
               GestureDetector(
                 child: Container(
                   padding: EdgeInsets.all(20.w),
