@@ -103,7 +103,7 @@ class PopularFoodDetail extends StatelessWidget {
                           color: AppColors.singColor,
                         ),
                         onTap: () {
-                          product.setQuantity(false);
+                          product.decriment();
                         },
                       ),
                       SizedBox(width: 5.w),
@@ -118,7 +118,7 @@ class PopularFoodDetail extends StatelessWidget {
                           color: AppColors.singColor,
                         ),
                         onTap: () {
-                          product.setQuantity(true);
+                          product.incriment();
                         },
                       ),
                     ],

@@ -26,11 +26,21 @@ class PopulerFoodController extends GetxController {
     return null;
   }
 
-  void setQuantity(bool isIncriment) {
-    if (isIncriment) {
-      quantity = quantity + 1;
+  void incriment() {
+    quantity = checkQuantity(quantity + 1);
+  }
+
+  void decriment() {
+    quantity = checkQuantity(quantity - 1);
+  }
+
+  RxInt checkQuantity(RxInt quantity) {
+    if (quantity < 0) {
+      return 0.obs;
+    } else if (quantity > 20) {
+      return 20.obs;
     } else {
-      quantity = quantity - 1;
+      return quantity;
     }
   }
 }
