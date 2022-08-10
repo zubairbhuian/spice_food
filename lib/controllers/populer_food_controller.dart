@@ -3,7 +3,10 @@ import 'package:food_app/services/remote_services.dart';
 import 'package:get/get.dart';
 
 class PopulerFoodController extends GetxController {
+  RxInt _inCardItems = 0.obs;
   RxInt quantity = 0.obs;
+
+  RxInt get inCardItems => _inCardItems + quantity.value;
   var isLoding = true.obs;
   var productList = [].obs;
 
@@ -26,12 +29,12 @@ class PopulerFoodController extends GetxController {
     return null;
   }
 
-  void incriment() {
-    quantity = checkQuantity(quantity + 1);
-  }
-
-  void decriment() {
-    quantity = checkQuantity(quantity - 1);
+  void setquantity(bool isIncriment) {
+    if (isIncriment) {
+      quantity = checkQuantity(quantity + 1);
+    } else {
+      quantity = checkQuantity(quantity - 1);
+    }
   }
 
   RxInt checkQuantity(RxInt quantity) {
@@ -42,5 +45,10 @@ class PopulerFoodController extends GetxController {
     } else {
       return quantity;
     }
+  }
+
+  initProduct() {
+    quantity = 0.obs;
+    _inCardItems = 0.obs;
   }
 }

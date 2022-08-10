@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_app/controllers/populer_food_controller.dart';
 import 'package:food_app/utils/colors.dart';
 import 'package:food_app/views/home/main_food_page.dart';
 import 'package:food_app/widgets/app_icon.dart';
@@ -50,17 +51,19 @@ class AddToCardScreen extends StatelessWidget {
                         icon: Icons.shopping_cart_outlined,
                         bgColor: AppColors.mainColor,
                         iconColor: Colors.white),
-                    const Positioned(
+                    Positioned(
                         top: -1,
                         right: 2,
                         child: CircleAvatar(
                           radius: 10,
                           backgroundColor: Colors.red,
-                          child: BigText(
-                            color: Colors.white,
-                            text: "2",
-                            size: 12,
-                          ),
+                          child: Obx(() {
+                            return const BigText(
+                              color: Colors.white,
+                              text: '20',
+                              size: 12,
+                            );
+                          }),
                         ))
                   ],
                 ),

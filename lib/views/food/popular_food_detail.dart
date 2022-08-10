@@ -18,6 +18,7 @@ class PopularFoodDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final PopulerFoodController product = Get.put(PopulerFoodController());
+    Get.find<PopulerFoodController>().initProduct();
     return Scaffold(
         backgroundColor: Colors.white,
         body: Obx(() {
@@ -46,7 +47,24 @@ class PopularFoodDetail extends StatelessWidget {
                           Get.back();
                         },
                         child: const AppIcon(icon: Icons.arrow_back_ios)),
-                    const AppIcon(icon: Icons.shopping_cart_outlined)
+                    Stack(children: [
+                      const AppIcon(icon: Icons.shopping_cart_outlined),
+                      Positioned(
+                          top: -1,
+                          right: 2,
+                          child: CircleAvatar(
+                            radius: 10,
+                            backgroundColor:
+                                const Color.fromARGB(255, 0, 189, 247),
+                            child: Obx(() {
+                              return BigText(
+                                color: Colors.white,
+                                text: product.inCardItems.string,
+                                size: 12,
+                              );
+                            }),
+                          ))
+                    ])
                   ],
                 )),
             Positioned(
@@ -91,39 +109,39 @@ class PopularFoodDetail extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                  padding: EdgeInsets.all(20.w),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20.r)),
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                        child: Icon(
-                          Icons.remove,
-                          color: AppColors.singColor,
-                        ),
-                        onTap: () {
-                          product.decriment();
-                        },
+                padding: EdgeInsets.all(20.w),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20.r)),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      child: Icon(
+                        Icons.remove,
+                        color: AppColors.singColor,
                       ),
-                      SizedBox(width: 5.w),
-                      Obx(() {
-                        return BigText(text: product.quantity.toString());
-                      }),
-                      // BigText(text: product.quantity.toString()),
-                      SizedBox(width: 5.w),
-                      GestureDetector(
-                        child: Icon(
-                          Icons.add,
-                          color: AppColors.singColor,
-                        ),
-                        onTap: () {
-                          product.incriment();
-                        },
+                      onTap: () {
+                        product.setquantity(false);
+                      },
+                    ),
+                    SizedBox(width: 5.w),
+                    Obx(() {
+                      return BigText(text: product.quantity.toString());
+                    }),
+                    // BigText(text: product.quantity.toString()),
+                    SizedBox(width: 5.w),
+                    GestureDetector(
+                      child: Icon(
+                        Icons.add,
+                        color: AppColors.singColor,
                       ),
-                    ],
-                  ),
+                      onTap: () {
+                        product.setquantity(true);
+                      },
+                    ),
+                  ],
                 ),
+              ),
               GestureDetector(
                 child: Container(
                   padding: EdgeInsets.all(20.w),
