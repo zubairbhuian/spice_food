@@ -1,10 +1,10 @@
 class AppConstants {
   static const String appName = 'Food App';
   static const int appVersion = 1;
-
-  static const String baseURL = "http://bhuianfoodapi.herokuapp.com/";
-  static const String populerProductURL = "/api/v1/products/popular";
-  static const String recommendedProductURL = "/api/v1/products/recommended";
+// local URL http://10.0.2.2:port/
+  static const String baseURL = "https://zubairbhuian.onrender.com/";
+  static const String populerProductURL = "populerfood";
+  static const String recommendedProductURL = "recommendatfood";
 
   static const String token = 'BDtoken';
 }
